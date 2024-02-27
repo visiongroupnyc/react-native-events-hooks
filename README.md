@@ -6,6 +6,7 @@ La librería proporciona un mecanismo flexible y potente para la gestión de eve
 
 
 - [react-native-events-hooks](#react-native-events-hooks)
+- [install](#install)
 - [Características Principales](#características-principales)
 	- [Manejo de Eventos Globales y Privados](#manejo-de-eventos-globales-y-privados)
 	- [Gestión de Suscripciones a Eventos](#gestión-de-suscripciones-a-eventos)
@@ -23,6 +24,11 @@ La librería proporciona un mecanismo flexible y potente para la gestión de eve
 - [Ejemplo](#ejemplo)
 
 
+
+# install
+```bash
+$ npm install react-native-events-hooks --save
+```
 
 # Características Principales
 
@@ -158,7 +164,7 @@ import {
 
 import {
 	useEvents,
-} from 'react-native-events-hook';
+} from 'react-native-events-hooks';
 
 const styles = StyleSheet.create({
 	container: {

@@ -12,7 +12,7 @@ import {
 
 import {
 	useEvents,
-} from 'react-native-events-hook';
+} from 'react-native-events-hooks';
 
 const styles = StyleSheet.create({
 	container: {
