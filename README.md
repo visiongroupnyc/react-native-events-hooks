@@ -1,27 +1,31 @@
 # react-native-events-hooks
-La librería proporciona un mecanismo flexible y potente para la gestión de eventos dentro de aplicaciones React Native. Permite a los componentes suscribirse a eventos específicos y reaccionar a ellos, facilitando la comunicación entre componentes dispersos a través de la aplicación sin necesidad de prop drilling o contextos complejos. Ofrece funcionalidades para manejar tanto eventos globales, compartidos a través de toda la aplicación, como eventos privados, limitados al ámbito de un componente individual, ofreciendo así una gran versatilidad en la gestión de la comunicación entre componentes.
 
+The library provides a flexible and powerful mechanism for event management within React Native applications. It allows components to subscribe to specific events and react to them, facilitating communication between dispersed components throughout the application without the need for prop drilling or complex contexts. It offers functionalities for handling both global events, shared across the entire application, and private events, limited to the scope of an individual component, thus offering great versatility in managing communication between components.
+
+Powered by [César Casas](https://www.linkedin.com/in/cesarcasas/)
 
 ![React Native Events Hook logo](./assets/react-native-events-hook.png)
 
 
 - [react-native-events-hooks](#react-native-events-hooks)
 - [install](#install)
-- [Características Principales](#características-principales)
+- [Global and Private Event Handling](#global-and-private-event-handling)
 	- [Manejo de Eventos Globales y Privados](#manejo-de-eventos-globales-y-privados)
-	- [Gestión de Suscripciones a Eventos](#gestión-de-suscripciones-a-eventos)
-	- [Limpieza Automática](#limpieza-automática)
-	- [Flexibilidad de Implementación](#flexibilidad-de-implementación)
-	- [Generación de IDs Únicos para Listeners](#generación-de-ids-únicos-para-listeners)
+	- [Subscription Management](#subscription-management)
+	- [Automatic Cleanup](#automatic-cleanup)
+	- [Implementation Flexibility](#implementation-flexibility)
+	- [Unique Listener IDs](#unique-listener-ids)
 - [useEvents](#useevents)
-	- [listen y listenPrivate](#listen-y-listenprivate)
-	- [emit y emitPrivate](#emit-y-emitprivate)
-	- [unlisten y unlistenPrivate](#unlisten-y-unlistenprivate)
+	- [listen and listenPrivate](#listen-and-listenprivate)
+	- [emit and emitPrivate](#emit-and-emitprivate)
+	- [unlisten and unlistenPrivate](#unlisten-and-unlistenprivate)
 	- [removeAllListenersByEvent](#removealllistenersbyevent)
 - [getAllEventsName](#getalleventsname)
-- [Aspectos Destacados de la Implementación](#aspectos-destacados-de-la-implementación)
-- [Uso Recomendado](#uso-recomendado)
+- [Implementation Highlights](#implementation-highlights)
+- [Recommended Use](#recommended-use)
 - [Ejemplo](#ejemplo)
+- [Changelog](#changelog)
+- [MIT License](#mit-license)
 
 
 
@@ -30,26 +34,26 @@ La librería proporciona un mecanismo flexible y potente para la gestión de eve
 $ npm install react-native-events-hooks --save
 ```
 
-# Características Principales
+# Global and Private Event Handling
 
 ## Manejo de Eventos Globales y Privados
-Permite a los componentes escuchar y emitir eventos tanto de forma global como privada. Los eventos globales son accesibles en toda la aplicación, mientras que los eventos privados se limitan al componente que los crea.
+Enables components to listen to and emit both global events, which are accessible throughout the entire application, and private events, confined to the emitting and listening components, providing precise and efficient event management.
 
-## Gestión de Suscripciones a Eventos
-Los componentes pueden registrarse para escuchar eventos específicos y definir callbacks que se ejecutarán cuando esos eventos sean emitidos.
+## Subscription Management
+Offers a straightforward API for components to subscribe to events, enabling them to react dynamically to changes or actions across the application.
 
-## Limpieza Automática
-Incorpora mecanismos para limpiar automáticamente los listeners de eventos privados cuando el componente se desmonta, previniendo así fugas de memoria.
+## Automatic Cleanup
+Incorporates automatic listener cleanup mechanisms to prevent memory leaks, especially for private events, ensuring components only listen to relevant events during their lifecycle.
 
-## Flexibilidad de Implementación
-Proporciona una API sencilla y flexible, haciendo que la integración y el uso de la librería en proyectos existentes sea fácil y directa.
+## Implementation Flexibility
+The library's design ensures easy integration into existing projects, allowing developers to implement sophisticated event-driven behaviors with minimal code changes.
 
-## Generación de IDs Únicos para Listeners
-Utiliza una generación simple pero efectiva de identificadores únicos para los listeners de eventos, facilitando la gestión y eliminación de suscripciones a eventos.
+## Unique Listener IDs
+Generates unique IDs for event listeners, simplifying the subscription and unsubscription process and enhancing the manageability of event listeners.
 
 # useEvents
 
-useEvents es un hook que nos proporcionará una lista de métodos para poder operar con nuestros eventos.
+`useEvents` is a hook that provides a list of methods to operate with our events.
 
 ```javascript
 function MyBox({ boxId }) {
@@ -61,10 +65,8 @@ function MyBox({ boxId }) {
 	...
 ```
 
-## listen y listenPrivate
-Para suscribirse a eventos globales o privados, respectivamente. Los callbacks registrados a través de estos métodos se invocarán cuando el evento correspondiente sea emitido.
-Ambos método retornan un `listenerId`.
-Es importante entender que a la hora de realizar el `listen` o `listenPrivate`, se deberá realizar dentro de un `useEffect`, para evitar múltiples subscripciones al mismo evento.
+## listen and listenPrivate
+To subscribe to either global or private events, respectively. Callbacks registered through these methods will be invoked when the corresponding event is emitted. Both methods return a listenerId. It's important to understand that when performing `listen` or `listenPrivate`, it should be done within a useEffect to prevent multiple subscriptions to the same event.
 
 ```javascript
 useEffect(() => {
@@ -84,7 +86,7 @@ useEffect(() => {
 
 ```
 
-## emit y emitPrivate
+## emit and emitPrivate
 ```javascript
 export default function App() {
 	const {
@@ -101,9 +103,8 @@ export default function App() {
 }
 ```
 
-## unlisten y unlistenPrivate
-Estos métodos eliminan los listeners de un evento.
-Es requerido el `eventName` y `listenerId`.
+## unlisten and unlistenPrivate
+These methods remove listeners from an event. Both the `eventName` and `listenerId` are required.
 
 ```javascript
 useEffect(() => {
@@ -123,30 +124,30 @@ useEffect(() => {
 ```
 
 ## removeAllListenersByEvent
-Elimina todos los listeners de un `eventName`.
+Removes all listeners for a given `eventName`.
 
 # getAllEventsName
-Este método nos permitirá obtener todos los eventos registrados hasta el momento.
+This method allows us to retrieve all the events registered up to the moment.
 
 ```javascript
 import { getAllEventsName } from 'react-native-events-hook';
 ```
 
 
-# Aspectos Destacados de la Implementación
+# Implementation Highlights
 
-- Eventos Globales y Privados: La distinción entre eventos globales y privados permite a los componentes manejar eventos específicamente dentro de su propio ámbito o compartir eventos en toda la aplicación, según sea necesario.
+- `Global and Private Events:` The distinction between global and private events allows components to handle events specifically within their own scope or share events across the application as needed.
 
-- Gestión del Estado para Eventos Privados: Utilizar useState para almacenar eventos privados permite a los componentes tener su propio conjunto de listeners que no afectan ni son afectados por otros componentes, a menos que explícitamente se comparta la información.
+- `State Management for Private Events:` Using `useState` to store private events enables components to have their own set of listeners that do not impact or get affected by other components unless the information is explicitly shared.
 
-# Uso Recomendado
-Esta librería es ideal para aplicaciones React que requieren una gestión compleja de la comunicación entre componentes, especialmente en casos donde el prop drilling o el uso excesivo de contextos se vuelve impracticable. Es especialmente útil en aplicaciones grandes y modulares, donde la separación de preocupaciones y la eficiencia en la comunicación entre componentes son críticas para el mantenimiento y la escalabilidad.
+# Recommended Use
+This library is ideal for `React applications` that require complex management of communication between components, especially in cases where `prop drilling` or excessive use of `contexts` becomes impractical. It is particularly useful in large and modular applications, where the separation of concerns and efficiency in communication between components are critical for maintenance and scalability.
 
 
 # Ejemplo
-El ejemplo proporcionado ilustra cómo utilizar useEvents para crear una dinámica interactiva donde múltiples "cajas" pueden cambiar de color de forma aleatoria o resetearse a un estado inicial. Esto demuestra la potencia de react-native-events-hooks para facilitar interacciones complejas entre componentes de forma eficiente y con código reducido.
+The provided example illustrates how to use `useEvents` to create an interactive dynamic where multiple "boxes" can change color randomly or reset to an initial state. This demonstrates the power of `react-native-events-hooks` to facilitate complex interactions between components efficiently and with reduced code.
 
-![Ejemplo de uso](./assets/example2.gif)
+![Example](./assets/example2.gif)
 
 
 ```javascript
@@ -274,3 +275,9 @@ export default function App() {
 }
 
 ```
+# Changelog
+- Mar 25, 2024. Version 1.0.2
+  - Added English documentation.
+
+
+# MIT License

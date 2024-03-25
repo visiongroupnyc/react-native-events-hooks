@@ -1,8 +1,8 @@
 {
   "name": "react-native-events-hooks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Works with events into React Native",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "node"
   },
@@ -17,8 +17,12 @@
     "context",
     "hooks"
   ],
-  "author": "César Casas",
-  "license": "ISC",
+  "author": {
+    "name": "César Casas",
+    "email": "cesarcasas@bsdsolutions.com.ar",
+    "url": "https://linkedin.com/in/cesarcasas"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/visiongroupnyc/react-native-events-hooks/issues"
   },
