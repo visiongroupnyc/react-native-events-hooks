@@ -44,10 +44,10 @@ const listenHandle = (store: EventStore = registeredEvents) => (
 const unlistenHandle = (store: EventStore = registeredEvents) => (
   eventName: string,
   listenerId: string
-): EventStore | null => {
+): EventStore => {
   if (!eventName) throw new Error('eventName is required');
   if (!listenerId) throw new Error('listenerId is required');
-  if (!store[eventName]) return null;
+  if (!store[eventName]) store;
   store[eventName] = store[eventName].filter((cb) => cb.listenerId !== listenerId);
   return store;
 };

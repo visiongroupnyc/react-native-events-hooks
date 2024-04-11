@@ -1,6 +1,6 @@
 {
   "name": "react-native-events-hooks",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Works with events into React Native",
   "main": "index.ts",
   "scripts": {
@@ -26,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/visiongroupnyc/react-native-events-hooks/issues"
   },
-  "homepage": "https://github.com/visiongroupnyc/react-native-events-hooks#readme"
+  "homepage": "https://github.com/visiongroupnyc/react-native-events-hooks#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.75"
+  }
 }
