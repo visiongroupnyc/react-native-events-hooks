@@ -44,7 +44,7 @@ const listenHandle = (store: EventStore = registeredEvents) => (
 const unlistenHandle = (store: EventStore = registeredEvents) => (
   eventName: string,
   listenerId: string
-): EventStore => {
+): EventStore | null => {
   if (!eventName) throw new Error('eventName is required');
   if (!listenerId) throw new Error('listenerId is required');
   if (!store[eventName]) return null;
